@@ -66,3 +66,10 @@ html, body {
 .restart-btn:hover {
   background-color: aqua;
 }
+
+.player-turn {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 45px;
+  color: #272727;
+}

@@ -10,7 +10,7 @@ export interface CellValue {
     ) => void;
 }
 
-const deepCopyCells = (prevCells: CellValue[]) : CellValue[] =>
+const deepCopyCells = (prevCells: CellValue[]): CellValue[] =>
     JSON.parse(JSON.stringify(prevCells));
 
 const startCells: CellValue[] = [
@@ -61,7 +61,7 @@ const Board = () => {
             if (cells.every((el) => el.status === 'filled')) {
                 setCells((prev) => {
                     const newCells = deepCopyCells(prev);
-                    newCells.map(cell => cell.status = 'draw');
+                    newCells.map((cell) => (cell.status = 'draw'));
                     return newCells;
                 });
                 setHasWinner(true);
@@ -95,25 +95,34 @@ const Board = () => {
     };
 
     return (
-        <div className="board">
-            {cells.map((cell) => (
-                <Cell
-                    key={cell.id}
-                    value={cell.value}
-                    status={cell.status}
-                    id={cell.id}
-                    clickHandler={handleCellClick}
-                />
-            ))}
-            {hasWinner ? (
-                <button
-                    onClick={resetGame}
-                    className="restart-btn"
-                >
-                    Restart
-                </button>
-            ) : null}
-        </div>
+        <>
+            <h2 className="player-turn">
+                {!hasWinner
+                    ? player1Turn
+                        ? 'PlayerX turn!'
+                        : 'PlayerO turn!'
+                    : null}
+            </h2>
+            <div className="board">
+                {cells.map((cell) => (
+                    <Cell
+                        key={cell.id}
+                        value={cell.value}
+                        status={cell.status}
+                        id={cell.id}
+                        clickHandler={handleCellClick}
+                    />
+                ))}
+                {hasWinner ? (
+                    <button
+                        onClick={resetGame}
+                        className="restart-btn"
+                    >
+                        Restart
+                    </button>
+                ) : null}
+            </div>
+        </>
     );
 };
 
