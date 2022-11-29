@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/kiricle/react-tic-tac-toe.git
 ```
-2. Open the project in the IDE and run next command:
+2. Open the project folder in the terminal and run next command:
 ```
 npm run build
 ```
