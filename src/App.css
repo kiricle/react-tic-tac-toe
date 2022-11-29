@@ -49,6 +49,10 @@ html, body {
   background-color: lightgreen;
 }
 
+.draw {
+  background-color: lightslategray;
+}
+
 .restart-btn {
   background-color: transparent;
   padding: 7px 15px;
@@ -61,5 +65,4 @@ html, body {
 
 .restart-btn:hover {
   background-color: aqua;
-  
 }

@@ -4,13 +4,13 @@ import React, { useState } from 'react';
 export interface CellValue {
     value: '' | 'X' | 'O';
     id: string;
-    status: 'empty' | 'filled' | 'win-comb';
+    status: 'empty' | 'filled' | 'win-comb' | 'draw';
     clickHandler?: (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => void;
 }
 
-const deepCopyCells = (prevCells: CellValue[]) =>
+const deepCopyCells = (prevCells: CellValue[]) : CellValue[] =>
     JSON.parse(JSON.stringify(prevCells));
 
 const startCells: CellValue[] = [
@@ -56,7 +56,15 @@ const Board = () => {
                 cells[comb[1]].status = 'win-comb';
                 cells[comb[2]].status = 'win-comb';
                 setCells((prev) => cells);
-                return;
+            }
+
+            if (cells.every((el) => el.status === 'filled')) {
+                setCells((prev) => {
+                    const newCells = deepCopyCells(prev);
+                    newCells.map(cell => cell.status = 'draw');
+                    return newCells;
+                });
+                setHasWinner(true);
             }
         }
     };
